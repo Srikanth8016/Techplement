@@ -8,13 +8,11 @@ const port = 3001;
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/quotes', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
-// Quote Schema and Model
 const quoteSchema = new mongoose.Schema({
     author: String,
     text: String,
@@ -22,7 +20,6 @@ const quoteSchema = new mongoose.Schema({
 
 const Quote = mongoose.model('Quote', quoteSchema);
 
-// API Endpoints
 app.get('/api/quote', async (req, res) => {
     const quotes = await Quote.find();
     const randomIndex = Math.floor(Math.random() * quotes.length);
