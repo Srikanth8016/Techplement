@@ -8,13 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/quotes', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
-// Quote Schema and Model
 const quoteSchema = new mongoose.Schema({
     author: String,
     text: String,
@@ -22,7 +20,6 @@ const quoteSchema = new mongoose.Schema({
 
 const Quote = mongoose.model('Quote', quoteSchema);
 
-// Seed quotes data
 const quotes = [
     { author: "Alan Kay", text: "The best way to predict the future is to invent it." },
     { author: "Charles R. Swindoll", text: "Life is 10% what happens to us and 90% how we react to it." },
